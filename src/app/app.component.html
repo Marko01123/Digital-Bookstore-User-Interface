@@ -1,0 +1,48 @@
+<mat-sidenav-container>
+    <mat-sidenav #sidenav opened="true">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/signup" (click)="sidenav.close()">
+                <mat-icon>person</mat-icon> 
+                Signup
+            </a>
+            <a mat-list-item routerLink="/login" (click)="sidenav.close()">
+                <mat-icon>login</mat-icon> 
+                Login
+            </a>
+            <a mat-list-item routerLink="/shop" (click)="sidenav.close()">
+                <mat-icon>store</mat-icon> 
+                Prodavnica
+            </a>
+            <a mat-list-item routerLink="/cart" (click)="sidenav.close()">
+                <mat-icon>shopping_cart</mat-icon>
+                Korpa
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+        <mat-toolbar>
+            <div id="button" fxHide.gt-xs>
+                <button mat-raised-button color="primary" (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div>
+                <a routerLink="/">Knjizara</a>
+            </div>
+
+            <div fxFlex fxLayoutAlign="end" fxLayoutGap="15px" fxHide.xs>
+                <button mat-raised-button color="primary" [disabled]="this.userService.currentUser.id == 0" (click)="openProfile(this.userService.currentUser.id)">
+                    {{ this.userService.currentUser.name }}
+                </button>
+                <a routerLink="/signup">Signup</a>
+                <a routerLink="/login">Login</a>
+                <button mat-raised-button color="primary" [disabled]="this.userService.currentUser.id == 0" (click)="btnClickShop()">Prodavnica</button>
+                <button mat-icon-button color="primary" [disabled]="this.userService.currentUser.id == 0" (click)="btnClickCart()"><mat-icon>shopping_cart</mat-icon></button>
+            </div>
+        </mat-toolbar>
+        
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+
+</mat-sidenav-container>

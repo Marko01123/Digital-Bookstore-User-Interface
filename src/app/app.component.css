@@ -1,0 +1,12 @@
+a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: orange;
+}
+
+#button {
+    padding-right: 10px;
+}

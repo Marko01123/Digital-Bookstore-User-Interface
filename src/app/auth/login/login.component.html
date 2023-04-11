@@ -1,0 +1,39 @@
+<section>
+    <form
+        fxLayout="column" 
+        fxLayoutAlign="center center"
+        fxLayoutGap="15px"
+        #f="ngForm"
+        (ngSubmit)="onSubmit(f)">
+
+        <h1>Prijavite se</h1>
+
+        <mat-form-field>
+            <input 
+                type="email"
+                matInput 
+                placeholder="Unesite Vas email..." 
+                ngModel 
+                name="email"
+                email
+                required
+                #emailInput="ngModel">
+                <mat-error *ngIf="emailInput.hasError('required')">Polje ne sme biti prazno</mat-error>
+                <mat-error *ngIf="!emailInput.hasError('required')">Unesite email u ispravnom formatu</mat-error>
+        </mat-form-field>
+        <mat-form-field hintLabel="Unesite minimum 8 karaktera">
+            <input 
+                type="password" 
+                matInput 
+                placeholder="Unesite Vasu lozinku..." 
+                ngModel 
+                name="password"
+                required
+                minlength="8"
+                #passInput="ngModel">
+                <mat-hint align="end">{{ passInput.value?.length }} / 8</mat-hint>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Prijavi se</button>
+        <mat-label *ngIf="errorExists">{{ errorText }}</mat-label>
+    </form>
+</section>

@@ -1,0 +1,15 @@
+<section>
+    <h1 mat-dialog-title>Kupovina knjige</h1>
+    <mat-dialog-content>
+        <p>Da li ste sigurni da zelite da ovaj proizvod dodate u korpu?</p>
+        <p>Naziv: {{ receivedData.name }}</p>
+        <p>Pisac: {{ receivedData.writer }}</p>
+        <p>Izdavac: {{ receivedData.publisher }}</p>
+        <p>Cena: {{ receivedData.price }} RSD</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button mat-button [mat-dialog-close]="true" color="primary" (click)="addBookToCart()">Da</button>
+        <button mat-button [mat-dialog-close]="false" color="primary">Ne</button>
+    </mat-dialog-actions>
+</section>

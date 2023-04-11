@@ -1,0 +1,63 @@
+<div fxLayoutAlign="center center">
+    <h1>Prodavnica</h1>
+</div>
+
+<div fxLayoutAlign="center center">
+    <mat-form-field fxFlex="35%">
+        <input matInput type="text" (keyup)="doFilter($any($event.target).value)" 
+        placeholder="Pretraga">
+    </mat-form-field>
+</div>
+
+<mat-table [dataSource]="bookSource" matSort>
+
+    <ng-container matColumnDef="date">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Datum izlaska</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.date | date }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Naziv</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.name }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="writer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Pisac</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.writer }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="publisher">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Izdavac</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.publisher }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="genre">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Zanr</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.genre }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pages">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Broj stranica</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.pages | number }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="rating">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Ocena citatelja</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.rating | number }}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Cena</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{ element.price | number }} RSD</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="button">
+        <mat-header-cell *matHeaderCellDef></mat-header-cell>
+        <mat-cell *matCellDef="let element"><button mat-raised-button color="primary" type="submit" 
+            (click)="addToCart(element.id)">Kupi</button></mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let rows; columns: displayedColumns"></mat-row>
+</mat-table>
+<mat-paginator [pageSize]="1" [pageSizeOptions]="[1, 2, 5, 10, 20]"></mat-paginator>
